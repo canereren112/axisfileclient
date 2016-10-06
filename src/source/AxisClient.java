@@ -1,6 +1,10 @@
 package source;
 
 import java.net.*;
+
+import javax.imageio.ImageIO;
+
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class AxisClient {
@@ -29,9 +33,11 @@ public class AxisClient {
          InputStream inFromServer = client.getInputStream();
          DataInputStream in = new DataInputStream(inFromServer);
          
-         axisFileReader.saveInputStream(inFromServer, getOutputFilePath());
+         BufferedImage image = ImageIO.read(inFromServer);
          
-         System.out.println("Server says " + in.readChar());
+        // axisFileReader.saveInputStream(inFromServer, getOutputFilePath());
+         axisFileReader.saveImageStream(image, getOutputFilePath());
+        // System.out.println("Server says " + in.readChar());
          client.close();
       }catch(IOException e) {
          e.printStackTrace();

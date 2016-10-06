@@ -1,6 +1,9 @@
 package source;
 
+import java.awt.image.BufferedImage;
 import java.io.*;
+
+import javax.imageio.ImageIO;
 
 public class AxisFileReader {
 	OutputStream outputStream = null;
@@ -40,6 +43,24 @@ public class AxisFileReader {
 				}
 
 			}
+		}
+
+	}
+	
+	public void saveImageStream(BufferedImage bufferedImage, String outputFilePath) {
+
+		try {
+			
+			// write the inputStream to a FileOutputStream
+			File file = new File(outputFilePath);
+			
+            ImageIO.write(bufferedImage, "JPEG", file);
+            System.out.println("Done!");
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			
 		}
 
 	}

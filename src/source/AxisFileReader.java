@@ -47,22 +47,39 @@ public class AxisFileReader {
 
 	}
 	
-	public void saveImageStream(BufferedImage bufferedImage, String outputFilePath) {
+	public synchronized void saveImageStream(InputStream inputStream, String outputFilePath) {
 
 		try {
+	        
 			
+	        BufferedImage image = ImageIO.read(inputStream);
+	        
 			// write the inputStream to a FileOutputStream
 			File file = new File(outputFilePath);
 			
-            ImageIO.write(bufferedImage, "JPEG", file);
+            System.out.println("Saving the image file!");
+            ImageIO.write(image, "JPEG", file);
             System.out.println("Done!");
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			
+		} 
+
+	}
+	
+	public synchronized void showImagePane(InputStream inputStream){
+        BufferedImage image;
+		try {
+			image = ImageIO.read(inputStream);
+			new ReceiveImageFrame(image);
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
+		while(true){
+			
+		}
 	}
 
 }

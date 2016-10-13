@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class AxisClient {
-	private final static String AXIS_OUTPUT_PATH = "D:/axisfolder/assignment1/";
+	private final static String AXIS_OUTPUT_PATH = "C:/axisfolder/assignment1/";
 	private final static String AXIS_FILE = "axis.jpg";
 
    public static void main(String [] args){
@@ -26,17 +26,17 @@ public class AxisClient {
          
          System.out.println("Just connected to " + client.getRemoteSocketAddress());
          OutputStream outToServer = client.getOutputStream();
+         
          DataOutputStream out = new DataOutputStream(outToServer);
          
          
          out.writeUTF("Hello from " + client.getLocalSocketAddress());
          InputStream inFromServer = client.getInputStream();
-         DataInputStream in = new DataInputStream(inFromServer);
-         
-         BufferedImage image = ImageIO.read(inFromServer);
+        // DataInputStream in = new DataInputStream(inFromServer);
+
          
         // axisFileReader.saveInputStream(inFromServer, getOutputFilePath());
-         axisFileReader.saveImageStream(image, getOutputFilePath());
+         axisFileReader.saveImageStream(inFromServer, getOutputFilePath());
         // System.out.println("Server says " + in.readChar());
          client.close();
       }catch(IOException e) {

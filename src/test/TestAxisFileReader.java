@@ -1,6 +1,8 @@
 package test;
 
 
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -8,6 +10,7 @@ import java.io.InputStream;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import source.AxisClientThread;
 import source.AxisFileReader;
 
 public class TestAxisFileReader{
@@ -24,13 +27,10 @@ public class TestAxisFileReader{
 		inputStream2 =  new FileInputStream("C:/axisfolder/assignment1/caner.jpg");
 	}
 	
-	//@Test
-	public void testAxisFileReaderSave(){
-		axisFileReader.saveInputStream(inputStream, outputFilePath);
-	}
+	
 	
 	@Test
-	public void testShowAxisImage(){
-		axisFileReader.showImagePane(inputStream2);
+	public void testReadInputStream(){
+		InputStream is = new ByteArrayInputStream( "Caner".getBytes() );		
 	}
 }
